@@ -3,13 +3,13 @@ import onnxruntime as rt
 import numpy as np
 import os
 
-import config
+import config.constants as constants
 
 
 class BaseModel:
     def __init__(self, **kwargs):
-        self.tokenizer = AutoTokenizer.from_pretrained(os.path.join(config.project_path, "model"))
-        self.sess = rt.InferenceSession(os.path.join(config.project_path, "model", kwargs["model_name"] + ".onnx"))
+        self.tokenizer = AutoTokenizer.from_pretrained(os.path.join(constants.project_path, "model"))
+        self.sess = rt.InferenceSession(os.path.join(constants.project_path, "model", kwargs["model_name"] + ".onnx"))
         self.labels = kwargs['labels']
 
     def convert_label(self, label):

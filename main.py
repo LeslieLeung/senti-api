@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-import uvicorn
+import uvicorn, os
 
 from senti import Roberta2Cls, Roberta3Cls
+import config.constants as constants
 
 app = FastAPI()
-
+constants.project_path = os.path.dirname(__file__)
 
 @app.get("/predict/{model_name}/{text}")
 async def predict(model_name: str, text: str):
