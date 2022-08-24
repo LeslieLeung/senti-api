@@ -1,9 +1,9 @@
-FROM python:3.7-slim
+FROM python:3.8-slim
 RUN pip install --upgrade pip
 RUN mkdir /app
 WORKDIR /app
 COPY ./requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 COPY ../model/roberta_3cls.onnx /app/model/roberta_3cls.onnx
 COPY ../model/*.json /app/model/
 COPY ../senti /app/senti
